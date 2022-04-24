@@ -3,23 +3,12 @@ Create a directory for files: $ mkdir core_os_install
 Navigate: $ cd core_os_install
 Install coreos-installer: $ sudo dnf install coreos-installer
 Install Butane: $ sudo dnf install -y butane
-Create a basic Ignition config (example.bu) that modifies the default Fedora CoreOS user core to allow this user to log in with an SSH key:
-variant: fcos
-version: 1.4.0
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCnzAjmf6bVHsbSLuZlky9NYQhRDC5HS8YGrcbczwGWC96Imj6wOt742YCmfMRhz1W/YEibIU/Un6mRGNhw2TVyvwsUgLhRbftnGrsdO/pWz1d5opqrNpsXYLEXa9vzwAwfUf53bOyKoqppheo5XndiLzHmD9SFBMWZ3SrhXI3BO+7uJlFcKfrupB9eHzRx/9IvNa3ORKqTu1QlQoumKGXbDS77ZUZM7KiQTfprZubLftoMalC7JdjpDzkvaGkUf87JdlPEo9kXHcs8P+VTY1O1MjtotKAVblyiJZLO9EvEDbeGicDIeDHmGk0dl5v+R365c486KTiBTBK/cvHQeOXtC2hHoAt9kRpLoAv08CUt8UaP/EvoJYnagHXl7b5c18PI6ztOSKwrx5u/freuyP9Prw20PlCZ7auXcfUBc0Jkk/RMqItYnD0SKTvLIHKvLAyjfxDxgt0VBfJEc17vCmmCGoGkiz76mk509TjbxNhJ0YoDZbcXJ2E82A2gwG8wMi0= matthew.f.erler@gmail.com
-
-
   
-  Run Butane on the Butane config: $ butane --pretty --strict example.bu > example.ign
+Run Butane on the Butane config: $ butane --pretty --strict Ignition.yaml > Ignition.json
   
 See: https://techoverflow.net/2021/06/14/a-simple-coreos-config-for-beginners-with-password-login/
-Try this simple Ignition file from the page above: sudo coreos-installer install /dev/nvme0n1 --copy-network --ignition-url https://techoverflow.net/coreos.ign
+Install via a remote file on GitHub: sudo coreos-installer install /dev/nvme0n1 --copy-network --ignition-url https://github.com/matthewferler/CoreOS-installation/blob/main/Ignition.json
 
 
-Install CoreOS: sudo coreos-installer install /dev/nvme0n1 --ignition-file ./example.ign
-Reboot: $ sudo reboot
-
+Install via a local file on the system: sudo coreos-installer install /dev/nvme0n1 --ignition-file ./Ignition.json
+Reboot into CoreOS: $ sudo reboot
