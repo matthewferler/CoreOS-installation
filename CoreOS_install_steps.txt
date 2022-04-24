@@ -7,8 +7,8 @@ Install Butane: $ sudo dnf install -y butane
 Run Butane on the Butane config: $ butane --pretty --strict Ignition.yaml > Ignition.json
   
 See: https://techoverflow.net/2021/06/14/a-simple-coreos-config-for-beginners-with-password-login/
-Install via a remote file on GitHub: sudo coreos-installer install /dev/nvme0n1 --copy-network --ignition-url https://github.com/matthewferler/CoreOS-installation/blob/main/Ignition.json
+Install via a remote file on GitHub: sudo coreos-installer install /dev/nvme0n1 --copy-network --ignition-url https://github.com/matthewferler/CoreOS-installation/blob/main/coreos.ign
 
 
-Install via a local file on the system: sudo coreos-installer install /dev/nvme0n1 --ignition-file ./Ignition.json
+Install via a local file on the system: sudo coreos-installer install /dev/nvme0n1 --ignition-file ./coreos.ign
 Reboot into CoreOS: $ sudo reboot
