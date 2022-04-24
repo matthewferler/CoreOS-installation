@@ -19,7 +19,7 @@ systemd:
 
     - name: containerd.service
       enabled: true
-    - name: matthew.f.erler@gmail.com
+    - name: autologin.service
       dropins:
       - name: autologin-core.conf
         contents: |
