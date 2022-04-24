@@ -49,6 +49,24 @@ systemd:
         [Install]
         WantedBy=multi-user.target
         
+    - name: foldingathome.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=A folding at home Docker container!
+        After=network-online.target
+        Wants=network-online.target
+        
+        [Service]
+        Type=forking
+        KillMode=none
+        Restart=on-failure
+        RemainAfterExit=yes
+        ExecStartPre=docker pull linuxserver/foldingathome
+        ExecStart=docker run -d --name=foldingathome -e USER=24_core_threadripper_FoldingMonster -e TEAM=1063205 -p 7396:7396 linuxserver/foldingathome
+        [Install]
+        WantedBy=multi-user.target
+        
 storage:
   files:
     - path: /etc/hostname
